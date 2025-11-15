@@ -35,6 +35,8 @@ export const PillBase: React.FC = () => {
 
   const [isTransitioning, setIsTransitioning] = useState(false)
 
+  const [isMobile, setIsMobile] = useState(false)
+
   const containerRef = useRef<HTMLDivElement>(null)
 
   const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -60,10 +62,27 @@ export const PillBase: React.FC = () => {
 
 
   // Spring animations for smooth motion
-
+  // Responsive width: smaller on mobile, larger on desktop
   const pillWidth = useSpring(140, { stiffness: 220, damping: 25, mass: 1 })
 
   const pillShift = useSpring(0, { stiffness: 220, damping: 25, mass: 1 })
+  
+  // Check if mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+  
+  // Update pill width based on mobile state
+  useEffect(() => {
+    if (!hovering) {
+      pillWidth.set(isMobile ? 120 : 140)
+    }
+  }, [isMobile, hovering, pillWidth])
 
 
 
@@ -74,8 +93,7 @@ export const PillBase: React.FC = () => {
     if (hovering) {
 
       setExpanded(true)
-
-      pillWidth.set(720)
+      pillWidth.set(isMobile ? 320 : 720)
 
       if (hoverTimeoutRef.current) {
 
@@ -88,8 +106,7 @@ export const PillBase: React.FC = () => {
       hoverTimeoutRef.current = setTimeout(() => {
 
         setExpanded(false)
-
-        pillWidth.set(140)
+        pillWidth.set(isMobile ? 120 : 140)
 
       }, 600)
 
@@ -224,7 +241,9 @@ export const PillBase: React.FC = () => {
 
       onMouseLeave={handleMouseLeave}
 
-      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 rounded-full"
+      onTouchStart={() => setHovering(true)}
+
+      className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 rounded-full"
 
       style={{
 
@@ -622,7 +641,7 @@ export const PillBase: React.FC = () => {
 
                   style={{
 
-                    fontSize: '15.5px',
+                    fontSize: isMobile ? '13.5px' : '15.5px',
 
                     fontWeight: 680,
 
@@ -704,7 +723,7 @@ export const PillBase: React.FC = () => {
 
                   style={{
 
-                    fontSize: isActive ? '15.5px' : '15px',
+                    fontSize: isActive ? (isMobile ? '13.5px' : '15.5px') : (isMobile ? '13px' : '15px'),
 
                     fontWeight: isActive ? 680 : 510,
 
@@ -718,7 +737,7 @@ export const PillBase: React.FC = () => {
 
                     border: 'none',
 
-                    padding: '10px 16px',
+                    padding: isMobile ? '8px 10px' : '10px 16px',
 
                     outline: 'none',
 

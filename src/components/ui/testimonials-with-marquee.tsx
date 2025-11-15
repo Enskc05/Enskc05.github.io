@@ -35,7 +35,7 @@ export function TestimonialsSection({
           </p>
         </div>
 
-        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-8">
+        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-4 sm:py-6 md:py-8">
           <div className="group flex overflow-hidden w-full" style={{ '--gap': '1rem', '--duration': '40s' } as React.CSSProperties}>
             <div className="flex shrink-0 animate-marquee gap-4 group-hover:[animation-play-state:paused]">
               {/* First set of testimonials */}

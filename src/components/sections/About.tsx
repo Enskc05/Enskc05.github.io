@@ -8,7 +8,7 @@ export function About() {
     <>
       {/* Gradient transition from Lamp to About */}
       <div className="h-20 bg-gradient-to-b from-slate-950 to-slate-900" />
-      <section id="about" className="min-h-screen bg-slate-900 py-32 px-4" aria-label="Hakkımda bölümü">
+      <section id="about" className="min-h-screen bg-slate-900 py-16 sm:py-24 md:py-32 px-4 sm:px-6" aria-label="Hakkımda bölümü">
         <div className="max-w-6xl mx-auto">
           {/* Title */}
           <motion.div
@@ -18,7 +18,7 @@ export function About() {
             transition={{ duration: 0.8 }}
             className="text-center mb-20"
           >
-            <h2 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-500 bg-clip-text text-transparent">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-500 bg-clip-text text-transparent px-4">
               {t.about.title}
             </h2>
             <div className="w-32 h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent mx-auto" />
@@ -33,13 +33,13 @@ export function About() {
             className="relative mb-16"
           >
             <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-cyan-500/10 rounded-3xl blur-3xl" />
-            <div className="relative bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-sm rounded-3xl p-10 md:p-16 border border-slate-700/50 shadow-2xl">
+            <div className="relative bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-16 border border-slate-700/50 shadow-2xl">
               <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-3xl md:text-4xl font-light text-slate-200 leading-relaxed text-center"
+                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-slate-200 leading-relaxed text-center"
               >
                 {language === 'tr' ? (
                   <>
@@ -77,18 +77,18 @@ export function About() {
               className="relative group"
             >
               <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50 shadow-xl h-full">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-3 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-xl">
-                    <svg className="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="relative bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-slate-700/50 shadow-xl h-full">
+                <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  <div className="p-2 sm:p-3 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-xl">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                  <h3 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                     {language === 'tr' ? 'Deneyim' : 'Experience'}
                   </h3>
                 </div>
-                <p className="text-slate-300 text-lg leading-relaxed mb-4">
+                <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-3 sm:mb-4">
                   {language === 'tr' ? (
                     <>
                       <span className="text-cyan-400 font-semibold text-xl">5+ yıllık</span> {t.about.experience}
@@ -99,7 +99,7 @@ export function About() {
                     </>
                   )}
                 </p>
-                <p className="text-slate-400 text-base leading-relaxed">
+                <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
                   {language === 'tr' ? 'Her projede en iyi pratikleri uygulayarak, ölçeklenebilir ve sürdürülebilir kod yazıyorum.' : 'I write scalable and sustainable code by applying best practices in every project.'}
                 </p>
               </div>

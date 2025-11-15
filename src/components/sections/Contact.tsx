@@ -5,7 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext'
 export function Contact() {
   const { t } = useLanguage()
   return (
-    <section id="contact" className="min-h-screen bg-slate-950 py-20 px-4" aria-label="İletişim bölümü">
+    <section id="contact" className="min-h-screen bg-slate-950 py-12 sm:py-16 md:py-20 px-4 sm:px-6" aria-label="İletişim bölümü">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -13,7 +13,7 @@ export function Contact() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent px-4">
             {t.contact.title}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto mb-8" />
@@ -31,7 +31,7 @@ export function Contact() {
             className="space-y-8"
           >
             <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold text-slate-200 mb-6">
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-200 mb-4 md:mb-6">
                 {t.contact.reachOut}
               </h3>
               <p className="text-slate-400 leading-relaxed text-lg">
@@ -56,7 +56,7 @@ export function Contact() {
                   <div className="p-3 bg-slate-800 rounded-lg group-hover:bg-cyan-500/20 transition-colors">
                     <contact.icon className="text-cyan-400" size={24} />
                   </div>
-                  <span className="text-slate-300 group-hover:text-cyan-400 transition-colors text-lg">
+                  <span className="text-slate-300 group-hover:text-cyan-400 transition-colors text-base sm:text-lg break-all">
                     {contact.text}
                   </span>
                 </motion.a>
@@ -67,7 +67,7 @@ export function Contact() {
                     <h4 className="text-xl font-semibold text-slate-200 mb-6">
                       {t.contact.socialMedia}
                     </h4>
-                    <div className="flex justify-center gap-4">
+                    <div className="flex justify-center gap-3 sm:gap-4 flex-wrap">
                       {[
                         { icon: Linkedin, href: 'https://www.linkedin.com/in/enes-ko%C3%A7-16698728b/', label: 'LinkedIn' },
                         { icon: Github, href: 'https://github.com/Enskc05/', label: 'GitHub' },

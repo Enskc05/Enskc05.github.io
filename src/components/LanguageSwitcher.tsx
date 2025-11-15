@@ -33,18 +33,18 @@ export function LanguageSwitcher() {
   return (
     <div 
       ref={menuRef}
-      className="fixed top-4 right-4 z-50"
+      className="fixed top-3 right-3 md:top-4 md:right-4 z-50"
     >
       <motion.button
         onClick={() => setShowLangMenu(!showLangMenu)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        className="p-3 rounded-lg bg-slate-800/90 backdrop-blur-md border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 flex items-center gap-2"
+        className="p-2 md:p-3 rounded-lg bg-slate-800/90 backdrop-blur-md border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 flex items-center gap-1.5 md:gap-2"
         aria-label="Change language"
         aria-expanded={showLangMenu}
       >
-        <Languages className="w-5 h-5 text-cyan-400" />
-        <span className="text-sm font-medium text-slate-200 uppercase">
+        <Languages className="w-4 h-4 md:w-5 md:h-5 text-cyan-400" />
+        <span className="text-xs md:text-sm font-medium text-slate-200 uppercase">
           {language === 'tr' ? 'TR' : 'EN'}
         </span>
       </motion.button>

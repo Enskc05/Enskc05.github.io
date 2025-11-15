@@ -51,7 +51,7 @@ export function Projects() {
   
   return (
     <>
-      <section id="projects" className="min-h-screen bg-slate-900 py-20 px-4" aria-label="Projeler bölümü">
+      <section id="projects" className="min-h-screen bg-slate-900 py-12 sm:py-16 md:py-20 px-4 sm:px-6" aria-label="Projeler bölümü">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -59,7 +59,7 @@ export function Projects() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent px-4">
             {t.projects.title}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto mb-8" />
@@ -68,7 +68,7 @@ export function Projects() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" role="list">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" role="list">
           {projects.map((project, index) => (
             <motion.article
               key={project.title}
@@ -92,7 +92,7 @@ export function Projects() {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
               </div>
               
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 <div className="mb-3">
                   <span className="text-xs font-semibold text-cyan-400 uppercase tracking-wider">
                     {project.solution}
