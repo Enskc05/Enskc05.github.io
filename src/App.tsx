@@ -57,7 +57,7 @@ function App() {
         </Suspense>
       </main>
       <footer role="contentinfo" className="hidden">
-        <p>&copy; {new Date().getFullYear()} Portfolio. Tüm hakları saklıdır.</p>
+        <p>&copy; {new Date().getFullYear()} Eneskc05. Tüm hakları saklıdır.</p>
       </footer>
     </div>
   )

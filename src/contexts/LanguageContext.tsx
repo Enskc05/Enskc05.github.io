@@ -96,7 +96,7 @@ const translations: Record<Language, Translations> = {
       reachOut: 'Bana Ulaşın',
       description: 'Yeni projeler, işbirlikleri veya sadece merhaba demek için benimle iletişime geçmekten çekinmeyin. Size en kısa sürede geri dönüş yapacağım.',
       socialMedia: 'Sosyal Medya',
-      copyright: '© {year} Portfolio. Tüm hakları saklıdır.',
+      copyright: '© {year} Eneskc05. Tüm hakları saklıdır.',
     },
   },
   en: {
@@ -146,7 +146,7 @@ const translations: Record<Language, Translations> = {
       reachOut: 'Get In Touch',
       description: 'Don\'t hesitate to contact me for new projects, collaborations, or just to say hello. I will get back to you as soon as possible.',
       socialMedia: 'Social Media',
-      copyright: '© {year} Portfolio. All rights reserved.',
+      copyright: '© {year} Eneskc05. All rights reserved.',
     },
   },
 }
