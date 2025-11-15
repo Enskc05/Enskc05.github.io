@@ -1,6 +1,5 @@
 import { useEffect, lazy, Suspense, memo } from 'react'
 import { Navigation } from '@/components/Navigation'
-import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { LampDemo } from '@/components/ui/lamp'
 
 // Lazy load section components for code splitting
@@ -32,7 +31,6 @@ function App() {
 
   return (
     <div className="relative">
-      <LanguageSwitcher />
       <header role="banner">
         <Navigation />
       </header>
