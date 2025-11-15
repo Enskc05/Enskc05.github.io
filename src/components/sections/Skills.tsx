@@ -91,8 +91,8 @@ export function Skills() {
       </div>
 
       {/* Skills Content */}
-      <div className="relative z-20 min-h-screen py-12 sm:py-16 md:py-20 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto">
+      <div className="relative z-20 min-h-screen py-12 sm:py-16 md:py-20 w-full">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}

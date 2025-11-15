@@ -22,10 +22,10 @@ export function TestimonialsSection({
   return (
     <section className={cn(
       "bg-slate-900 text-slate-200",
-      "py-12 sm:py-24 md:py-32 px-0",
+      "py-12 sm:py-24 md:py-32 w-full",
       className
     )}>
-      <div className="mx-auto flex max-w-container flex-col items-center gap-4 text-center sm:gap-16">
+      <div className="w-full flex flex-col items-center gap-4 text-center sm:gap-16 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-4 px-4 sm:gap-8">
           <h2 className="max-w-[720px] text-3xl font-semibold leading-tight sm:text-5xl sm:leading-tight bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
             {title}

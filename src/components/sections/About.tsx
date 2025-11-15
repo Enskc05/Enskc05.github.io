@@ -8,8 +8,8 @@ export function About() {
     <>
       {/* Gradient transition from Lamp to About */}
       <div className="h-20 bg-gradient-to-b from-slate-950 to-slate-900" />
-      <section id="about" className="min-h-screen bg-slate-900 py-16 sm:py-24 md:py-32 px-4 sm:px-6" aria-label="Hakkımda bölümü">
-        <div className="max-w-6xl mx-auto">
+      <section id="about" className="min-h-screen bg-slate-900 py-16 sm:py-24 md:py-32 w-full" aria-label="Hakkımda bölümü">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           {/* Title */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}

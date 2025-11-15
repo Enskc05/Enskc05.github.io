@@ -17,8 +17,10 @@ export const PillBase: React.FC = () => {
   const { t, language, setLanguage } = useLanguage()
   const [activeSection, setActiveSection] = useState('home')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [showLangMenu, setShowLangMenu] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
+  const langMenuRef = useRef<HTMLDivElement>(null)
 
   const navItems: NavItem[] = [
     { label: t.nav.home, id: 'home' },
@@ -26,6 +28,7 @@ export const PillBase: React.FC = () => {
     { label: t.nav.skills, id: 'skills' },
     { label: t.nav.projects, id: 'projects' },
     { label: t.nav.testimonials, id: 'testimonials' },
+    { label: t.nav.contact, id: 'contact' },
   ]
 
   // Check if mobile on mount and resize
@@ -49,12 +52,15 @@ export const PillBase: React.FC = () => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setIsMenuOpen(false)
       }
+      if (langMenuRef.current && !langMenuRef.current.contains(event.target as Node)) {
+        setShowLangMenu(false)
+      }
     }
 
-    if (isMenuOpen) {
+    if (isMenuOpen || showLangMenu) {
       document.addEventListener('mousedown', handleClickOutside)
       // Prevent body scroll when menu is open on mobile
-      if (isMobile) {
+      if (isMobile && isMenuOpen) {
         document.body.style.overflow = 'hidden'
       }
     } else {
@@ -65,7 +71,7 @@ export const PillBase: React.FC = () => {
       document.removeEventListener('mousedown', handleClickOutside)
       document.body.style.overflow = 'unset'
     }
-  }, [isMenuOpen, isMobile])
+  }, [isMenuOpen, showLangMenu, isMobile])
 
   // Scroll detection to update active section
   useEffect(() => {
@@ -123,6 +129,7 @@ export const PillBase: React.FC = () => {
 
   const handleLanguageChange = (lang: 'tr' | 'en') => {
     setLanguage(lang)
+    setShowLangMenu(false)
   }
 
   // Mobile: Hamburger Menu
@@ -260,40 +267,100 @@ export const PillBase: React.FC = () => {
 
   // Desktop: Horizontal Navigation Pill (with hover expansion - no complex animations)
   return (
-    <motion.nav
-      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 h-14 rounded-full bg-slate-900/80 backdrop-blur-md border border-slate-700/50 shadow-lg"
-      initial={false}
-    >
-      <div className="relative h-full flex items-center justify-center px-6">
-        {/* Navigation items */}
-        <div className="flex items-center gap-2">
-          {navItems.map((item) => {
-            const isActive = item.id === activeSection
-            return (
-              <motion.button
-                key={item.id}
-                onClick={() => handleSectionClick(item.id)}
-                className={`relative px-4 py-2 rounded-lg transition-all duration-200 ${
-                  isActive
-                    ? 'text-cyan-400 font-semibold'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="text-sm whitespace-nowrap">{item.label}</span>
-                {isActive && (
-                  <motion.div
-                    layoutId="activeIndicator"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-400 rounded-full"
-                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                  />
-                )}
-              </motion.button>
-            )
-          })}
+    <>
+      <motion.nav
+        className="fixed top-6 left-1/2 -translate-x-1/2 z-50 h-14 rounded-full bg-slate-900/80 backdrop-blur-md border border-slate-700/50 shadow-lg"
+        initial={false}
+      >
+        <div className="relative h-full flex items-center justify-center px-6">
+          {/* Navigation items */}
+          <div className="flex items-center gap-2">
+            {navItems.map((item) => {
+              const isActive = item.id === activeSection
+              return (
+                <motion.button
+                  key={item.id}
+                  onClick={() => handleSectionClick(item.id)}
+                  className={`relative px-4 py-2 rounded-lg transition-all duration-200 ${
+                    isActive
+                      ? 'text-cyan-400 font-semibold'
+                      : 'text-slate-400 hover:text-slate-200'
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span className="text-sm whitespace-nowrap">{item.label}</span>
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeIndicator"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-400 rounded-full"
+                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                </motion.button>
+              )
+            })}
+          </div>
         </div>
+      </motion.nav>
+
+      {/* Desktop Language Switcher - Top Right */}
+      <div ref={langMenuRef} className="fixed top-6 right-6 z-50">
+        <motion.button
+          onClick={() => setShowLangMenu(!showLangMenu)}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="h-14 px-4 rounded-full bg-slate-900/80 backdrop-blur-md border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 flex items-center gap-2"
+          aria-label="Change language"
+          aria-expanded={showLangMenu}
+        >
+          <Languages className="w-5 h-5 text-cyan-400" />
+          <span className="text-sm font-semibold text-slate-200 uppercase">
+            {language === 'tr' ? 'TR' : 'EN'}
+          </span>
+        </motion.button>
+
+        <AnimatePresence>
+          {showLangMenu && (
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="absolute right-0 mt-2 w-36 rounded-lg bg-slate-800/95 backdrop-blur-md border border-slate-700/50 shadow-xl overflow-hidden"
+            >
+              <button
+                onClick={() => handleLanguageChange('tr')}
+                className={`w-full px-4 py-3 text-left text-sm transition-colors flex items-center gap-2 ${
+                  language === 'tr'
+                    ? 'bg-cyan-500/20 text-cyan-400 font-semibold'
+                    : 'text-slate-300 hover:bg-slate-700/50'
+                }`}
+              >
+                <span className="text-lg">🇹🇷</span>
+                <span>Türkçe</span>
+                {language === 'tr' && (
+                  <span className="ml-auto text-cyan-400">✓</span>
+                )}
+              </button>
+              <button
+                onClick={() => handleLanguageChange('en')}
+                className={`w-full px-4 py-3 text-left text-sm transition-colors border-t border-slate-700/50 flex items-center gap-2 ${
+                  language === 'en'
+                    ? 'bg-cyan-500/20 text-cyan-400 font-semibold'
+                    : 'text-slate-300 hover:bg-slate-700/50'
+                }`}
+              >
+                <span className="text-lg">🇬🇧</span>
+                <span>English</span>
+                {language === 'en' && (
+                  <span className="ml-auto text-cyan-400">✓</span>
+                )}
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </motion.nav>
+    </>
   )
 }
