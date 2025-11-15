@@ -7,4 +7,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://portfolio.example.com/sitemap.xml
+Sitemap: https://enskc05.github.io/sitemap.xml
